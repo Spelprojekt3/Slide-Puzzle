@@ -13,6 +13,7 @@ public class SlidePuzzleModel
 		createNumberList();
 		shuffleNumberList();
 		createGameBoard(numberList);
+		currentBoard();
 	}
 
 	public void createNumberList()
@@ -34,7 +35,7 @@ public class SlidePuzzleModel
 		{
 			for(int j = 0; j < 4; j++)
 			{
-				board[i][j] = list.get(index);
+				getBoard()[i][j] = list.get(index);
 				index++;
 			}
 		}
@@ -47,9 +48,17 @@ public class SlidePuzzleModel
 		{
 			for(int j = 0; j < 4; j++)
 			{
-				System.out.print(" " + board[i][j] + " ");
+				System.out.print(" " + getBoard()[i][j] + " ");
 			}
 			System.out.println("");
 		}
+	}
+
+	public int[][] getBoard() {
+		return board;
+	}
+
+	public void setBoard(int[][] board) {
+		this.board = board;
 	}
 }
