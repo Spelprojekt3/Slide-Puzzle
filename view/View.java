@@ -107,10 +107,15 @@ public void setButtonInvisible()
 			    gameButtons[i][j].setText(" ");
 			    gameButtons[i][j].setBorderPainted(false);
 			}
+			else
+			{
+				gameButtons[i][j].setContentAreaFilled(true);
+			    gameButtons[i][j].setFocusable(true);
+			    gameButtons[i][j].setBorderPainted(true);
+			}
 			
-			
-	}
- }	
+		}
+    }	
 }		
 	
 	
@@ -131,3 +136,6 @@ public void setGameButtons(JButton[][] gameButtons) {
 }
 	
 };
+
+
+
