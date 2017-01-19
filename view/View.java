@@ -21,6 +21,8 @@ public View(){
 	
 	createWindow();
 	createGameButtons(4,4); 
+	setVisible(true);
+	
 	
 }
 
@@ -43,7 +45,7 @@ public void createWindow() {
     //topPanel.setBackground(new Color(0,0,0));
 	
 	centerPanel= new JPanel(); 
-    centerPanel.setLayout(new GridLayout(3,3));
+    centerPanel.setLayout(new GridLayout(4,4));
 	centerPanel.setBackground(new Color(46,46,46));
 	add(centerPanel,BorderLayout.CENTER);
 	
@@ -75,29 +77,57 @@ public void createWindow() {
 
 public void createGameButtons(int x, int y){
 	
-	gameButtons = new JButton[x][y]; 
+	setGameButtons(new JButton[x][y]); 
 	
+	for(int i=0;i<getGameButtons().length;i++){
+	
+	for(int j=0;j<getGameButtons().length;j++){
+		
+		 gameButtons[i][j] = new JButton();
+		 gameButtons[i][j].setBackground(new Color(255,255,255));
+		 gameButtons[i][j].setFont(new Font("Tahoma",Font.PLAIN,50));
+		 gameButtons[i][j].setForeground(new Color(46,46,46));
+         centerPanel.add(getGameButtons()[i][j]);     
+	}
+}	
+}
+	
+public void setButtonInvisible()
+	{
+
 	for(int i=0;i<gameButtons.length;i++){
 	
 	for(int j=0;j<gameButtons.length;j++){
 		
-		 gameButtons[i][j] = new JButton();
-		 gameButtons[i][j].setBackground(new Color(255,0,0));
-		 gameButtons[i][j].setFont(new Font("Tahoma",Font.PLAIN,50));
-		 gameButtons[i][j].setForeground(new Color(255,255,255));
-         // gameButtons[i][j].putClientProperty("id", k);
-         // gameButtons[i][j].setContentAreaFilled(false);
-         //gameButtons[i][j].setFocusable(false);
-         centerPanel.add(gameButtons[i][j]);     
+			if(gameButtons[i][j].getText().equals("0"))
+			{
+			   
+				gameButtons[i][j].setContentAreaFilled(false);
+			    gameButtons[i][j].setFocusable(false);
+			    gameButtons[i][j].setText(" ");
+			    gameButtons[i][j].setBorderPainted(false);
+			}
+			
+			
 	}
-}	
-
+ }	
+}		
+	
+	
+	
+	
+	
 
 	
 	
+
+
+public JButton[][] getGameButtons() {
+	return gameButtons;
+}
+
+public void setGameButtons(JButton[][] gameButtons) {
+	this.gameButtons = gameButtons;
 }
 	
 };
-
-
-
