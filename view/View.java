@@ -117,15 +117,6 @@ public void setButtonInvisible()
 		}
     }	
 }		
-	
-	
-	
-	
-	
-
-	
-	
-
 
 public JButton[][] getGameButtons() {
 	return gameButtons;
@@ -135,7 +126,4 @@ public void setGameButtons(JButton[][] gameButtons) {
 	this.gameButtons = gameButtons;
 }
 	
-};
-
-
-
+}

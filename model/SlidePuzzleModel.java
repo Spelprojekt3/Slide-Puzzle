@@ -1,28 +1,52 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 public class SlidePuzzleModel implements Game
 {
 	private ArrayList<Integer> numberList = new ArrayList<Integer>();
-	private int[][] board = new int[4][4]; 
+	private int[][] board = new int[4][4];
+	private int[][] sortedBoard = new int[4][4];
 
 	public SlidePuzzleModel()
 	{
 		createNumberList();
 		shuffleNumberList();
 		createGameBoard(numberList);
-		currentBoard(); 
+		currentBoard();
+		createdSortedBoard();
 	}
-	
-	
 
 	public void createNumberList()
 	{
 		for (int i = 0; i < 16; i++) {
 			numberList.add(i);
 		}
+	}
+
+	public void createdSortedBoard()
+	{
+		int k = 1;
+		for (int i = 0; i < 4; i++)
+		{
+			for (int j = 0; j < 4; j++)
+			{
+				sortedBoard[i][j] = k;
+				k++;
+			}
+			
+		}
+		sortedBoard[3][3] = 0;
+	}
+
+	public boolean isPuzzleSolved()
+	{
+		if(Arrays.deepEquals(sortedBoard, board))
+			return true;
+		else
+			return false;
 	}
 
 	public void shuffleNumberList()
@@ -74,12 +98,20 @@ public class SlidePuzzleModel implements Game
 		}
 		return 0;	
 	}
-	
-	
-	
 
 	public int[][] getBoard() {
 		return board;
+	}
+
+	public boolean doWinnerCheck()
+	{
+		if(board[0][0] == sortedBoard[0][0] && board[3][3] == sortedBoard[3][3])
+		{
+			System.out.println("Checking if puzzle is solved");
+			return true;
+		}
+		else
+			return false;
 	}
 
 	public void setBoard(int[][] board) {
@@ -103,19 +135,24 @@ public class SlidePuzzleModel implements Game
 			
 	}
 	
-	
 	@Override
 	public boolean move(int i, int j) {
 		
-		int x=getPositionZero()/10; 
-		int y=getPositionZero()%10; 
-		
+		int x=getPositionZero()/10;
+		int y=getPositionZero()%10;
 
-		return false;
+		if(i == (x-1) && j == y)
+			return true;
+		if(i == (x+1) && j == y)
+			return true;
+		if(i == x && j == (y+1))
+			return true;
+		if(i == x && j == (y-1))
+			return true;
+		else
+			return false;
 	}
 	
-	
-
 	@Override
 	public String getStatus(int i, int j) {
 		// TODO Auto-generated method stub

@@ -85,10 +85,15 @@ public GameButtonListener(View view , SlidePuzzleModel model) {
 	        		
 	        		 int x=model.getPositionZero()/10;
 	        		 int y=model.getPositionZero()%10; 
-	        		 model.swap(x, y, i, j);
-	        		 model.currentBoard();
-	        		 addNumbers(); 
-	        		 view.setButtonInvisible(); 
+	        		 	if(model.move(i, j) == true)
+	        		 		{
+				        		 model.swap(x, y, i, j);
+				        		 model.currentBoard();
+				        		 addNumbers();
+				        		 view.setButtonInvisible();
+				        		 	if(model.doWinnerCheck() == true)
+				        		 		model.isPuzzleSolved();
+	        		 		}
 	        		 
 	        	 }
 	 	
@@ -97,4 +102,4 @@ public GameButtonListener(View view , SlidePuzzleModel model) {
 	        	}
         }
     }
-};
+}
